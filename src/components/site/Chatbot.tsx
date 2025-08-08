@@ -5,11 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 // NOTE: For production, avoid storing private API keys client-side.
 // The user requested a direct frontend call, so we embed the key here as asked.
 const GEMINI_API_KEY = "AIzaSyDZwDT3-oqkWclTeuRtgbgh2IUJYP0kUp8";
-const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_MODEL = "gemini-1.5-flash";
+const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1/models/${GEMINI_MODEL}:generateContent`;
 
 type ChatMessage = {
   role: "user" | "model";
   text: string;
+  isError?: boolean;
 };
 
 export default function Chatbot() {
@@ -40,14 +42,19 @@ export default function Chatbot() {
     setLoading(true);
 
     try {
-      const contents = convo.map((m) => ({
-        role: m.role,
-        parts: [{ text: m.text }],
-      }));
+      const contents = convo
+        .filter((m) => !m.isError)
+        .map((m) => ({
+          role: m.role,
+          parts: [{ text: m.text }],
+        }));
 
       const res = await fetch(GEMINI_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": GEMINI_API_KEY,
+        },
         body: JSON.stringify({ contents }),
       });
 
@@ -67,7 +74,7 @@ export default function Chatbot() {
       console.error("Gemini request failed", err);
       setMessages((prev) => [
         ...prev,
-        { role: "model", text: "Sorry, something went wrong. Please try again." },
+        { role: "model", text: "Sorry, something went wrong. Please try again.", isError: true },
       ]);
     } finally {
       setLoading(false);
