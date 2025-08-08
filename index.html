@@ -3,18 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vibes-on-stage</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+    <title>Live Music Concerts | Book Tickets & Discover Artists</title>
+    <meta name="description" content="Experience live music events. Explore upcoming concerts, artists, seat maps, and ticket prices. Book tickets now!" />
+    <meta name="author" content="Sonic Live" />
+    <link rel="canonical" href="/" />
 
-    <meta property="og:title" content="vibes-on-stage" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Live Music Concerts | Book Tickets" />
+    <meta property="og:description" content="Discover upcoming concerts, artists, and ticket prices. Book tickets now!" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:image" content="/opengraph-image.png" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Live Music Concerts | Book Tickets" />
+    <meta name="twitter:description" content="Explore concerts, artists, and ticket prices. Book now!" />
     <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:image" content="/opengraph-image.png" />
+
+    <!-- Structured Data: Example Music Event -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MusicEvent",
+        "name": "Sonic Live: Neon Nights",
+        "startDate": "2025-10-10T20:00:00",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+          "@type": "Place",
+          "name": "Sonic Arena",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Music Ave",
+            "addressLocality": "Metropolis",
+            "postalCode": "00000",
+            "addressRegion": "CA",
+            "addressCountry": "US"
+          }
+        },
+        "image": ["/opengraph-image.png"],
+        "description": "An electrifying night of live music with neon vibes and world-class artists.",
+        "offers": {
+          "@type": "Offer",
+          "url": "/#tickets",
+          "price": "49",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    </script>
   </head>
 
   <body>
